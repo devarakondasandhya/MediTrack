@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>MediTrack | Dashboard</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<header class="topbar">
+  <div class="logo">
+    <img src="hexagon-cross.jpg" class="logo-img">
+    <div>
+      <h2>MediTrack</h2>
+      <p>Pharmacy Management System</p>
+    </div>
+  </div>
+  <div class="user">
+    <strong>Welcome SANDHYA!</strong><br>
+    <small>Shop Overview</small>
+  </div>
+</header>
+
+<div class="container">
+
+<aside class="sidebar">
+  <ul>
+    <li class="active"><a href="#">Dashboard</a></li>
+    <li><a href="suppliers.html">Suppliers</a></li>
+    <li><a href="customers.html">Customers</a></li>
+    <li><a href="sales.html">Sales</a></li>
+    <li><a href="#">Logout</a></li>
+  </ul>
+</aside>
+
+<main class="content">
+
+<section class="stats">
+  <div class="card"><p>Total Medicines</p><h2 id="totalMedicines">0</h2></div>
+  <div class="card"><p>Total Stock</p><h2 id="totalStock">0</h2></div>
+  <div class="card"><p>Low Stock</p><h2 id="lowStock">0</h2></div>
+  <div class="card"><p>Inventory Value</p><h2 id="inventoryValue">₹0</h2></div>
+</section>
+
+<section class="inventory">
+  <div class="inventory-header">
+    <h2>Inventory Management</h2>
+    <div class="inventory-actions">
+      <input type="text" id="searchInput" placeholder="Search medicine..." class="search-bar">
+      <a href="#addMedicineModal" class="add-btn">+ Add Medicine</a>
+      <a href="#newSaleModal" class="add-btn">New Sale</a>
+    </div>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Medicine</th>
+        <th>Supplier</th>
+        <th>Stock</th>
+        <th>Buy</th>
+        <th>Sell</th>
+        <th>Inventory Value</th>
+        <th>Expiry</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody id="medicineTable"></tbody>
+  </table>
+</section>
+
+</main>
+</div>
+
+<!-- ADD MEDICINE MODAL -->
+<div id="addMedicineModal" class="modal">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h2>Add New Medicine</h2>
+      <a href="#" class="close">&times;</a>
+    </div>
+
+    <form id="medicineForm" class="modal-form">
+      <input type="text" id="medName" placeholder="Medicine Name" required>
+      <select id="supplier" placeholder="Supplier" required></select>
+      <input type="number" id="stock" placeholder="Stock" required>
+      <input type="number" id="minStock" placeholder="Min Stock" required>
+      <input type="number" id="buyPrice" placeholder="Buy Price" required>
+      <input type="number" id="sellPrice" placeholder="Sell Price" required>
+      <input type="date" id="expiry">
+      <button type="submit" class="submit-btn">Save</button>
+    </form>
+  </div>
+</div>
+
+<!-- NEW SALE MODAL -->
+<div id="newSaleModal" class="modal">
+  <div class="modal-box sale-box">
+
+    <div class="modal-header">
+      <h2>New Sale</h2>
+      <a href="#" class="close">&times;</a>
+    </div>
+
+    <!-- ================= CUSTOMER SECTION ================= -->
+    <div class="sale-section">
+      <h3>Customer Details</h3>
+
+      <input type="text"
+             id="customerSearch"
+             placeholder="Search by name or phone"
+             onkeyup="searchCustomer()">
+
+      <div id="customerSuggestions" class="suggestions"></div>
+    </div>
+
+
+    <!-- ================= MEDICINE SECTION ================= -->
+    <div class="sale-section">
+      <h3>Add Medicines</h3>
+
+      <input type="text"
+             id="medicineSearch"
+             placeholder="Search medicine..."
+             onkeyup="searchMedicine()">
+
+      <div id="medicineSuggestions" class="suggestions"></div>
+    </div>
+
+
+    <!-- ================= BILL SECTION ================= -->
+    <div class="sale-section">
+      <h3>Bill Details</h3>
+
+      <table class="bill-table">
+        <thead>
+          <tr>
+            <th>Medicine</th>
+            <th>Qty</th>
+            <th>Price</th>
+            <th>Total</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="billBody"></tbody>
+      </table>
+    </div>
+
+
+    <!-- ================= SUMMARY SECTION ================= -->
+    <div class="sale-section summary-section">
+
+      <div class="total-box">
+        Grand Total: ₹<span id="grandTotal">0</span>
+      </div>
+
+      <div class="payment-row">
+        <select id="paymentMode">
+          <option value="">Select Payment Mode</option>
+          <option>Cash</option>
+          <option>UPI</option>
+          <option>Card</option>
+        </select>
+
+        <button class="pay-btn" onclick="payNow()">Pay Now</button>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+
+<script src="dashboard.js"></script>
+</body>
+</html>

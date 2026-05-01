@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MediTrack | Sales</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="topbar">
+  <div class="logo">
+    <a href="dashboard.html">
+      <img src="hexagon-cross.jpg" class="logo-img" alt="Logo">
+    </a>
+    <div>
+      <h2>MediTrack</h2>
+      <p>Pharmacy Management System</p>
+    </div>
+  </div>
+
+  <div class="user">
+    <strong>Welcome PARBATI!</strong><br>
+    <small>Sales Management</small>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <ul>
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="suppliers.html">Suppliers</a></li>
+      <li><a href="customers.html">Customers</a></li>
+      <li class="active"><a href="#">Sales</a></li>
+      <li><a href="login.html">Logout</a></li>
+    </ul>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="content">
+    <section class="inventory">
+
+      <div class="inventory-header">
+        <div>
+          <h2>Sales History</h2>
+          <p>View all completed bills</p>
+        </div>
+
+        <div class="inventory-actions">
+          <input type="text" id="searchSales" placeholder="Search by customer or date">
+        </div>
+      </div>
+
+      <!-- TABLE -->
+      <table id="salesTable">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Customer</th>
+            <th>Payment Mode</th>
+            <th>Total Amount</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+
+        <tbody id="salesTableBody">
+        </tbody>
+      </table>
+
+    </section>
+  </main>
+</div>
+
+<script src="sales.js"></script>
+</body>
+</html>

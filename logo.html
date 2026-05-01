@@ -1,0 +1,19 @@
+import parvatiLogo from "@/assets/parvati-logo.png";
+
+const Index = () => {
+  return (
+    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-teal-50 to-white">
+      <div className="text-center p-8">
+        <img 
+          src={parvatiLogo} 
+          alt="Parvati Medical Shop Logo" 
+          className="w-80 h-80 mx-auto object-contain drop-shadow-lg"
+        />
+        <h1 className="mt-6 text-3xl font-semibold text-teal-700">Parvati Medical Shop</h1>
+        <p className="mt-2 text-lg text-teal-600/80">Your Trusted Healthcare Partner</p>
+      </div>
+    </div>
+  );
+};
+
+export default Index;

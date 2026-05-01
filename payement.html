@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Customers</title>
+
+  <style>
+    body {
+      font-family: "Times New Roman", serif;
+      background-color: #c4e7cb;
+      padding: 20px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #166534;
+    }
+
+    table {
+      width: 95%;
+      margin: auto;
+      border-collapse: collapse;
+      background-color: white;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    th, td {
+      padding: 15px;
+      text-align: center;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    th {
+      background-color: #1f6f64;
+      color: white;
+    }
+
+    tr:hover {
+      background-color: #f0fdf4;
+    }
+
+    .actions span {
+      cursor: pointer;
+      font-size: 18px;
+      margin: 0 8px;
+    }
+
+    .edit { color: #15803d; }
+    .delete { color: #dc2626; }
+
+    button {
+      padding: 6px 12px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .pay {
+      background-color: #1f6f64;
+      color: white;
+    }
+
+    .pay:hover {
+      background-color: #1e40af;
+    }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.4);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      width: 350px;
+    }
+
+    .modal-content h3 {
+      text-align: center;
+      color: #166534;
+    }
+
+    .modal-content input {
+      width: 95%;
+      padding: 8px;
+      margin: 8px 0;
+    }
+
+    .modal-actions {
+      text-align: right;
+      margin-top: 10px;
+    }
+
+    .save {
+      background: #1f6f64;
+      color: white;
+    }
+
+    .cancel {
+      background: #9ca3af;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+
+<h2>Customer Purchase Details</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Customer Name</th>
+      <th>Phone Number</th>
+      <th>Tablet Name</th>
+      <th>Total (₹)</th>
+      <th>Action</th>
+      <th>Payment</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>Anita Sharma</td>
+      <td>9876543210</td>
+      <td>Paracetamol 500mg</td>
+      <td>120</td>
+      <td class="actions">
+        <span class="edit" onclick="openEdit(this)">✏️</span>
+        <span class="delete" onclick="deleteRow(this)">🗑</span>
+      </td>
+      <td>
+        <button class="pay" onclick="payNow(this)">Pay Now</button>
+      </td>
+    </tr>
+
+    <tr>
+      <td>Ravi Kumar</td>
+      <td>9123456780</td>
+      <td>Ibuprofen 400mg</td>
+      <td>180</td>
+      <td class="actions">
+        <span class="edit" onclick="openEdit(this)">✏️</span>
+        <span class="delete" onclick="deleteRow(this)">🗑</span>
+      </td>
+      <td>
+        <button class="pay" onclick="payNow(this)">Pay Now</button>
+      </td>
+    </tr>
+
+    <tr>
+      <td>Sharma</td>
+      <td>9876546780</td>
+      <td>Paracetamol 500mg</td>
+      <td>130</td>
+      <td class="actions">
+        <span class="edit" onclick="openEdit(this)">✏️</span>
+        <span class="delete" onclick="deleteRow(this)">🗑</span>
+      </td>
+      <td>
+        <button class="pay" onclick="payNow(this)">Pay Now</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- EDIT MODAL -->
+<div class="modal" id="editModal">
+  <div class="modal-content">
+    <h3>Edit Customer</h3>
+    <input id="editPhone" placeholder="Phone Number">
+    <input id="editTablet" placeholder="Tablet Name">
+
+    <div class="modal-actions">
+      <button class="cancel" onclick="closeModal()">Cancel</button>
+      <button class="save" onclick="saveEdit()">Save</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  let currentRow = null;
+
+  function deleteRow(icon) {
+    if (confirm("Are you sure you want to delete this customer?")) {
+      icon.closest("tr").remove();
+    }
+  }
+
+  function openEdit(icon) {
+    currentRow = icon.closest("tr");
+    document.getElementById("editPhone").value = currentRow.cells[1].innerText;
+    document.getElementById("editTablet").value = currentRow.cells[2].innerText;
+    document.getElementById("editModal").style.display = "flex";
+  }
+
+  function saveEdit() {
+    currentRow.cells[1].innerText = document.getElementById("editPhone").value;
+    currentRow.cells[2].innerText = document.getElementById("editTablet").value;
+    closeModal();
+  }
+
+  function closeModal() {
+    document.getElementById("editModal").style.display = "none";
+  }
+
+  function payNow(button) {
+    const row = button.closest("tr");
+    const name = row.cells[0].innerText;
+    const amount = row.cells[3].innerText;
+
+    // Redirect to payment page
+    window.location.href = `payment.html?name=${name}&amount=${amount}`;
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MediTrack | Suppliers</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="topbar">
+  <div class="logo">
+    <a href="dashboard.html">
+      <img src="hexagon-cross.jpg" class="logo-img" alt="Logo">
+    </a>
+    <div>
+      <h2>MediTrack</h2>
+      <p>Pharmacy Management System</p>
+    </div>
+  </div>
+
+  <div class="user">
+    <strong>Welcome PARBATI!</strong><br>
+    <small>Supplier Management</small>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <ul>
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li class="active"><a href="#">Suppliers</a></li>
+      <li><a href="customers.html">Customers</a></li>
+      <li><a href="sales.html">Sales</a></li>
+      <li><a href="login.html">Logout</a></li>
+
+    </ul>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="content">
+    <section class="inventory">
+
+      <div class="inventory-header">
+        <div>
+          <h2>Suppliers</h2>
+          <p>Manage supplier information</p>
+        </div>
+
+        <div class="inventory-actions">
+          <input type="text" id="searchSupplier" placeholder="Search supplier">
+          <button class="add-btn" onclick="openModal()">+ Add Supplier</button>
+        </div>
+      </div>
+
+      <!-- TABLE -->
+      <table id="supplierTable">
+        <thead>
+          <tr>
+            <th>Supplier Name</th>
+            <th>Contact Person</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+
+        <tbody>
+        </tbody>
+      </table>
+
+    </section>
+  </main>
+</div>
+
+<!-- MODAL -->
+<div class="modal" id="supplierModal">
+  <div class="modal-box">
+
+    <div class="modal-header">
+      <h2 id="modalTitle">Add Supplier</h2>
+      <button class="close-btn" onclick="closeModal()">×</button>
+    </div>
+
+    <form id="supplierForm">
+      <input type="hidden" id="editIndex">
+
+      <div class="form-group">
+        <label>Supplier Name *</label>
+        <input type="text" id="supplierName" required>
+      </div>
+
+      <div class="form-group">
+        <label>Contact Person</label>
+        <input type="text" id="contactPerson">
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Phone</label>
+          <input type="tel" id="phone">
+        </div>
+
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="email">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Address</label>
+        <input type="text" id="address">
+      </div>
+
+      <div class="modal-actions">
+        <button type="button" class="cancel-btn" onclick="closeModal()">Cancel</button>
+        <button type="submit" class="submit-btn">Save Supplier</button>
+      </div>
+    </form>
+
+  </div>
+</div>
+
+<script src="suppliers.js"></script>
+</body>
+</html>
